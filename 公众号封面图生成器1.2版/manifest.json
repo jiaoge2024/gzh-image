@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "公众号封面图生成器",
+  "version": "1.1.0",
+  "description": "自动识别公众号文章标题，通过AI生成精美封面图",
+  
+  "permissions": [
+    "storage",
+    "activeTab",
+    "sidePanel",
+    "downloads"
+  ],
+  
+  "host_permissions": [
+    "https://api.coze.cn/*",
+    "https://mp.weixin.qq.com/*",
+    "https://xiumi.us/*",
+    "https://www.135editor.com/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mp.weixin.qq.com/*",
+        "https://xiumi.us/*",
+        "https://www.135editor.com/*",
+        "https://editor.135editor.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "公众号封面图生成器",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["sidepanel.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
